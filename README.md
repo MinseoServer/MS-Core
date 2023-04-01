@@ -1,3 +1,4 @@
+![Generic badge](https://img.shields.io/badge/version-1.0.4-green.svg)
 # MS-Core
 
 ### Gradle
@@ -7,7 +8,7 @@ repositories {
 }
 
 dependencies {
-  compileOnly 'com.github.MinseoServer:MS-Core:Tag'
+  compileOnly 'com.github.MinseoServer:MS-Core:1.0.4'
 }
 ```
 
@@ -23,6 +24,6 @@ dependencies {
 <dependency>
   <groupId>com.github.MinseoServer</groupId>
   <artifactId>MS-Core</artifactId>
-  <version>1.0.2-SNAPSHOT</version>
+  <version>1.0.4</version>
 </dependency>
 ```
