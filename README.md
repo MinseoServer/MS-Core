@@ -12,7 +12,7 @@ dependencies {
 ```
 
 ### Maven
-```maven
+```pom
 <repositories>
   <repository>
     <id>jitpack.io</id>
