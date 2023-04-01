@@ -26,7 +26,7 @@ repositories {
 }
 
 dependencies {
-  compileOnly("com.github.MinseoServer:MS-Core:1.0.5-SNAPSHOT")
+  compileOnly("com.github.MinseoServer", "MS-Core", "1.0.5-SNAPSHOT")
 }
 ```
 </details>
