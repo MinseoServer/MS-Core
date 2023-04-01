@@ -1,4 +1,4 @@
-![Generic badge](https://img.shields.io/badge/version-1.0.4-green.svg)
+![Generic badge](https://img.shields.io/badge/version-1.0.5_SNAPSHOT-green.svg)
 # MS-Core
 
 
@@ -12,7 +12,7 @@ repositories {
 }
 
 dependencies {
-  compileOnly 'com.github.MinseoServer:MS-Core:1.0.4'
+  compileOnly 'com.github.MinseoServer:MS-Core:1.0.5-SNAPSHOT'
 }
 ```
 </details>
@@ -26,7 +26,7 @@ repositories {
 }
 
 dependencies {
-  compileOnly("com.github.MinseoServer:MS-Core:1.0.4")
+  compileOnly("com.github.MinseoServer:MS-Core:1.0.5-SNAPSHOT")
 }
 ```
 </details>
@@ -47,7 +47,7 @@ dependencies {
 <dependency>
   <groupId>com.github.MinseoServer</groupId>
   <artifactId>MS-Core</artifactId>
-  <version>1.0.4</version>
+  <version>1.0.5-SNAPSHOT</version>
 </dependency>
 ```
 </details>
