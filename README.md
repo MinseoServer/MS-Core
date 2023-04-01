@@ -1,4 +1,4 @@
-![Generic badge](https://img.shields.io/badge/version-1.0.5_SNAPSHOT-green.svg)
+[![](https://jitpack.io/v/MinseoServer/MS-Core.svg)](https://jitpack.io/#MinseoServer/MS-Core)
 # MS-Core
 
 
