@@ -2,7 +2,7 @@ package kr.ms.core.container.button;
 
 import kr.ms.core.container.wrapper.ButtonClickEventWrapper;
 import lombok.Getter;
-import kr.ms.core.container.STContainer;
+import kr.ms.core.container.MSContainer;
 import kr.ms.core.util.PlayerSkullManager;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -17,17 +17,17 @@ import java.util.UUID;
 import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 
-public class STButton {
+public class MSButton {
 
     @Getter private boolean isGlow;
     @Getter private boolean isCleanable;
     @Getter private boolean isCancelled;
-    private BiConsumer<ButtonClickEventWrapper, STContainer> function;
+    private BiConsumer<ButtonClickEventWrapper, MSContainer> function;
     private ItemStack itemStack;
     private String displayName;
     private List<String> lore;
 
-    private STButton() {
+    private MSButton() {
         isGlow = false;
         isCleanable = true;
         isCancelled = false;
@@ -35,7 +35,7 @@ public class STButton {
         lore = null;
     }
 
-    private STButton apply() {
+    private MSButton apply() {
         ItemMeta meta = itemStack.getItemMeta();
         if(displayName != null) meta.setDisplayName(displayName);
         if(lore != null) meta.setLore(lore);
@@ -50,22 +50,22 @@ public class STButton {
     public String getDisplayName() { return displayName == null ? "" : displayName; }
     public List<String> getLore() { return lore == null ? Collections.emptyList() : lore; }
 
-    public void setSlot(STContainer container, int... slots) {
+    public void setSlot(MSContainer container, int... slots) {
         for(int slot: slots)
             container.registerButton(slot, this);
     }
 
-    public void execute(STContainer container, ButtonClickEventWrapper wrapper) {
+    public void execute(MSContainer container, ButtonClickEventWrapper wrapper) {
         if(function == null) return;
         function.accept(wrapper, container);
     }
 
     public static class STButtonBuilder {
 
-        private STButton button;
+        private MSButton button;
 
         private STButtonBuilder() {
-            button = new STButton();
+            button = new MSButton();
         }
 
         public STButtonBuilder(ItemStack itemStack) {
@@ -124,12 +124,12 @@ public class STButton {
             return this;
         }
 
-        public STButtonBuilder setClickFunction(BiConsumer<ButtonClickEventWrapper, STContainer> func) {
+        public STButtonBuilder setClickFunction(BiConsumer<ButtonClickEventWrapper, MSContainer> func) {
             button.function = func;
             return this;
         }
 
-        public STButton build() {
+        public MSButton build() {
             return button.apply();
         }
     }

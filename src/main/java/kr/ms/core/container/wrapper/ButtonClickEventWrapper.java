@@ -1,7 +1,7 @@
 package kr.ms.core.container.wrapper;
 
 import lombok.AllArgsConstructor;
-import kr.ms.core.container.button.STButton;
+import kr.ms.core.container.button.MSButton;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ButtonClickEventWrapper {
     private final InventoryClickEvent event;
-    private final STButton button;
+    private final MSButton button;
     public ItemStack getItemStack() {
         return event.getCurrentItem() == null ? new ItemStack(Material.AIR) : event.getCurrentItem();
     }

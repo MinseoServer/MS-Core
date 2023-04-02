@@ -12,27 +12,27 @@ public class ContainerListener implements Listener {
 
     @EventHandler
     public void onClickInventory(InventoryClickEvent event) {
-        STContainer container = getSTContainer(event.getView());
+        MSContainer container = getSTContainer(event.getView());
         if(container != null) container.$click(event);
     }
 
     @EventHandler
     public void onCloseInventory(InventoryCloseEvent event) {
-        STContainer container = getSTContainer(event.getView());
+        MSContainer container = getSTContainer(event.getView());
         if(container != null) container.$close(event);
     }
 
     @EventHandler
     public void onDragInventory(InventoryDragEvent event) {
-        STContainer container = getSTContainer(event.getView());
+        MSContainer container = getSTContainer(event.getView());
         if(container != null) container.$drag(event);
     }
 
-    private STContainer getSTContainer(InventoryView view) {
+    private MSContainer getSTContainer(InventoryView view) {
         if(view == null) return null;
         InventoryHolder topHolder = view.getTopInventory().getHolder();
         if(topHolder == null) return null;
-        return topHolder instanceof STContainer? (STContainer) topHolder : null;
+        return topHolder instanceof MSContainer ? (MSContainer) topHolder : null;
     }
 
 }

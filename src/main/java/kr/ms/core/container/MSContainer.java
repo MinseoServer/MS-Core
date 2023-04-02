@@ -1,7 +1,7 @@
 package kr.ms.core.container;
 
 import kr.ms.core.Core;
-import kr.ms.core.container.button.STButton;
+import kr.ms.core.container.button.MSButton;
 import kr.ms.core.container.wrapper.ButtonClickEventWrapper;
 import kr.ms.core.container.wrapper.InventoryClickEventWrapper;
 import org.bukkit.Material;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public abstract class STContainer implements InventoryHolder {
+public abstract class MSContainer implements InventoryHolder {
 
     private static final List<String> viewers = new ArrayList<>();
     private static final Core plugin;
@@ -31,7 +31,7 @@ public abstract class STContainer implements InventoryHolder {
     private static void registerPlayer(Player player) { viewers.add(player.getName()); }
     private static void unregisterPlayer(Player player) { viewers.remove(player.getName()); }
     public static void closeAll() {
-        viewers.forEach(STContainer::closeFunc);
+        viewers.forEach(MSContainer::closeFunc);
     }
 
     private static void closeFunc(String playerName) {
@@ -46,12 +46,12 @@ public abstract class STContainer implements InventoryHolder {
 
     @Override public Inventory getInventory() { return inventory; }
 
-    private final HashMap<Integer, STButton> slotMap = new HashMap<>();
+    private final HashMap<Integer, MSButton> slotMap = new HashMap<>();
     private InventoryType type;
     private final int size;
     private final String title;
     private final boolean cancel;
-    public STContainer(InventoryType type, String title, boolean cancel) {
+    public MSContainer(InventoryType type, String title, boolean cancel) {
         this.cancel = cancel;
         this.size = type.getDefaultSize();
         this.title = title;
@@ -59,7 +59,7 @@ public abstract class STContainer implements InventoryHolder {
         createInventory();
     }
 
-    public STContainer(int size, String title, boolean cancel) {
+    public MSContainer(int size, String title, boolean cancel) {
         type = null;
         this.cancel = cancel;
         this.size = size;
@@ -72,7 +72,7 @@ public abstract class STContainer implements InventoryHolder {
         inventory = type == null ? server.createInventory(this, size, title) : server.createInventory(this, type, title);
     }
 
-    public void registerButton(int slot, STButton button) {
+    public void registerButton(int slot, MSButton button) {
         if(slotMap.containsKey(slot)) {
             //STButton old = slotMap.get(slot);
             ItemStack oldItem = inventory.getItem(slot);
@@ -129,7 +129,7 @@ public abstract class STContainer implements InventoryHolder {
         ItemStack itemChecker = event.getCurrentItem();
         if(itemChecker == null || itemChecker.getType().equals(Material.AIR)) return;
         if(!wrapper.isButtonCancelled() && slotMap.containsKey(wrapper.getRawSlot())) {
-            STButton button = slotMap.get(wrapper.getRawSlot());
+            MSButton button = slotMap.get(wrapper.getRawSlot());
             button.execute(this, new ButtonClickEventWrapper(event, button));
             if(button.isCancelled()) event.setCancelled(true);
         }

@@ -47,7 +47,6 @@ public class ItemStackNameUtil {
                 Reader reader = new InputStreamReader(var1,StandardCharsets.UTF_8);
                 languageMap = gson.fromJson(reader, Map.class);
             } catch (Exception ignored) {
-                ignored.printStackTrace();
             }
         }
     }
@@ -70,7 +69,7 @@ public class ItemStackNameUtil {
             if (languageMap.containsKey(unlocalizedName))
                 return languageMap.get(unlocalizedName);
         } catch (Exception ignored) {
-            ignored.printStackTrace();
+            return itemStack.getType().name().toLowerCase();
         }
         return itemStack.getType().name().toLowerCase().replace("_", " ");
     }
