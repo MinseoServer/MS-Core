@@ -59,8 +59,8 @@ public class MSSubCommand {
                 try { obj = it.getFirst().cast(args[i]); } catch (Exception e) { obj = null; }
                 if(it.getSecond() && obj == null) {
                     String label = it.getFirst().getLabel();
-                    if(function.getParameters()[i].isAnnotationPresent(ArgumentLabel.class))
-                        label = function.getParameters()[i].getAnnotation(ArgumentLabel.class).value();
+                    if(function.getParameters()[i + 1].isAnnotationPresent(ArgumentLabel.class))
+                        label = function.getParameters()[i + 1].getAnnotation(ArgumentLabel.class).value();
                     sender.sendMessage(String.format(MessageContext.COMMAND_NOT_NULL_ARGUMENT, label));
                     return;
                 } else argumentList.add(obj);
