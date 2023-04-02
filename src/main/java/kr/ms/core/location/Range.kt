@@ -20,13 +20,13 @@ interface Range {
         }
     }
 
-    val minPos: Pos
-    val maxPos: Pos
+    val minPos: Position
+    val maxPos: Position
 }
 
-operator fun Range.contains(pos: Pos): Boolean = minPos <= pos && pos <= maxPos
+operator fun Range.contains(pos: Position): Boolean = minPos <= pos && pos <= maxPos
 
-fun Range.forEach(block: (pos: Pos) -> Unit) {
+fun Range.forEach(block: (pos: Position) -> Unit) {
     for(x in minPos.x .. maxPos.x) {
         for(y in minPos.y .. maxPos.y) {
             for(z in minPos.z .. maxPos.z) {
@@ -38,7 +38,7 @@ fun Range.forEach(block: (pos: Pos) -> Unit) {
 
 fun Range.forEachAsync(
     context: SynchronizationContext = SynchronizationContext.ASYNC,
-    block: (pos: Pos) -> Unit) {
+    block: (pos: Position) -> Unit) {
     Core.getInstance().coroutine(context) {
         for(x in minPos.x .. maxPos.x) {
             for(y in minPos.y .. maxPos.y) {

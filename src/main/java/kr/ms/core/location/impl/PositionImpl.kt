@@ -1,6 +1,6 @@
 package kr.ms.core.location.impl
 
-import kr.ms.core.location.Pos
+import kr.ms.core.location.Position
 import kr.ms.core.location.pos
 import org.bukkit.Location
 
@@ -8,7 +8,7 @@ internal data class PositionImpl(
     override val x: Int,
     override val y: Int,
     override val z: Int,
-) : Pos {
+) : Position {
 
     override fun toString(): String {
         return "$x,$y,$z"
@@ -18,7 +18,7 @@ internal data class PositionImpl(
         when (other) {
             null -> false
             is Location -> other.pos == this
-            !is Pos -> false
+            !is Position -> false
             else -> x == other.x && y == other.y && z == other.z
         }
 

@@ -43,5 +43,5 @@ interface LazyLocation {
 }
 
 fun Player.teleport(lazyLocation: LazyLocation) = lazyLocation::teleportHere
-val LazyLocation.pos: Pos get() = PositionImpl(blockX, blockY, blockZ)
-val Location.pos: Pos get() = PositionImpl(blockX, blockY, blockZ)
+val LazyLocation.pos: Position get() = PositionImpl(blockX, blockY, blockZ)
+val Location.pos: Position get() = PositionImpl(blockX, blockY, blockZ)
