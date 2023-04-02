@@ -12,7 +12,7 @@ repositories {
 }
 
 dependencies {
-  compileOnly 'com.github.MinseoServer:MS-Core:1.0.5-SNAPSHOT'
+  compileOnly 'com.github.MinseoServer:MS-Core:version'
 }
 ```
 </details>
@@ -26,7 +26,7 @@ repositories {
 }
 
 dependencies {
-  compileOnly("com.github.MinseoServer", "MS-Core", "1.0.5-SNAPSHOT")
+  compileOnly("com.github.MinseoServer", "MS-Core", "version")
 }
 ```
 </details>
@@ -47,7 +47,7 @@ dependencies {
 <dependency>
   <groupId>com.github.MinseoServer</groupId>
   <artifactId>MS-Core</artifactId>
-  <version>1.0.5-SNAPSHOT</version>
+  <version>version</version>
 </dependency>
 ```
 </details>
