@@ -24,7 +24,7 @@ public class MSSubCommand {
         this.function = method;
         this.parent = parent;
         StringBuilder builder = new StringBuilder();
-        builder.append("§e/").append(parent.getCommand()).append(" ").append(annotation.subCommand());
+        builder.append("§6/").append(parent.getCommand()).append(" ").append(annotation.subCommand());
         Parameter[] params = method.getParameters();
         for(int i = 0; i < params.length; i++) {
             if(i == 0) continue;

@@ -38,8 +38,10 @@ public class $MSArgumentRepositoryImpl implements MSArgumentRepository {
 
     @Override
     public MSArgument<?> getArgument(Class<?> clazz) {
-        if(argumentMap.containsKey(clazz.getSimpleName())) {
-            List<MSArgument<?>> list = argumentMap.get(clazz.getSimpleName());
+        String simpleName = clazz.getSimpleName();
+        if(simpleName.equalsIgnoreCase("Int")) simpleName = "Integer";
+        if(argumentMap.containsKey(simpleName)) {
+            List<MSArgument<?>> list = argumentMap.get(simpleName);
             if(list.isEmpty()) return null;
             else return list.get(0);
         }

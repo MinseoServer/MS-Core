@@ -25,9 +25,8 @@ public abstract class MSCommand implements CommandExecutor, TabCompleter {
                 Arrays.stream(it.getAnnotationsByType(Subcommand.class))
                         .collect(Collectors.toList())
                         .forEach(annotation ->
-                                subCommands.put(annotation.subCommand(), new MSSubCommand(annotation, it, this))
-                        )
-        );
+                                subCommands.put(annotation.subCommand(), new MSSubCommand(annotation, it, this))));
+
         PluginCommand pluginCommand = plugin.getCommand(command);
         if(pluginCommand != null) {
             pluginCommand.setExecutor(this);
