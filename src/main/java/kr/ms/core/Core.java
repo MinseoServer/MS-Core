@@ -1,8 +1,8 @@
 package kr.ms.core;
 
-import kr.ms.core.repo.impl.$STArgumentRepositoryImpl;
+import kr.ms.core.repo.impl.$MSArgumentRepositoryImpl;
 import kr.ms.core.container.ContainerListener;
-import kr.ms.core.repo.STArgumentRepository;
+import kr.ms.core.repo.MSArgumentRepository;
 import kr.ms.core.util.AsyncExecutor;
 import kr.ms.core.util.ItemStackNameUtil;
 import kr.ms.core.util.PlayerSkullManager;
@@ -11,14 +11,14 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Core extends JavaPlugin {
 
-    private static $STArgumentRepositoryImpl argumentRepository;
+    private static $MSArgumentRepositoryImpl argumentRepository;
     private static Core instance;
 
     @Override
     @SuppressWarnings("all")
     public void onEnable() {
         instance = this;
-        argumentRepository = new $STArgumentRepositoryImpl();
+        argumentRepository = new $MSArgumentRepositoryImpl();
         //new Metrics(this, 17172);
 
         VersionController.$initializing(this);
@@ -33,7 +33,7 @@ public class Core extends JavaPlugin {
         AsyncExecutor.shutdown();
     }
 
-    public static STArgumentRepository getArgumentRepository() { return argumentRepository; }
+    public static MSArgumentRepository getArgumentRepository() { return argumentRepository; }
     public static Core getInstance() { return instance; }
 
 }

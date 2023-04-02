@@ -11,13 +11,13 @@ import java.lang.reflect.Method;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public abstract class STCommand implements CommandExecutor, TabCompleter {
+public abstract class MSCommand implements CommandExecutor, TabCompleter {
 
-    private final HashMap<String, STSubCommand> subCommands = new HashMap<>();
+    private final HashMap<String, MSSubCommand> subCommands = new HashMap<>();
     private final String command;
     public String getCommand() { return command; }
     private final String description;
-    public STCommand(String command, String description, JavaPlugin plugin) {
+    public MSCommand(String command, String description, JavaPlugin plugin) {
         this.command = command;
         this.description = description;
         List<Method> methods = Arrays.stream(getClass().getMethods()).filter((method)->method.getReturnType().equals(void.class)).collect(Collectors.toList());
@@ -25,7 +25,7 @@ public abstract class STCommand implements CommandExecutor, TabCompleter {
                 Arrays.stream(it.getAnnotationsByType(Subcommand.class))
                         .collect(Collectors.toList())
                         .forEach(annotation ->
-                                subCommands.put(annotation.subCommand(), new STSubCommand(annotation, it, this))
+                                subCommands.put(annotation.subCommand(), new MSSubCommand(annotation, it, this))
                         )
         );
         PluginCommand pluginCommand = plugin.getCommand(command);
@@ -58,7 +58,7 @@ public abstract class STCommand implements CommandExecutor, TabCompleter {
 
     protected List<String> tabComplete(CommandSenderWrapper sender, String[] args) {
         if(args.length <= 1) return StringUtil.copyPartialMatches(args[0], subCommands.entrySet().stream().filter(it->{
-            STSubCommand value = it.getValue();
+            MSSubCommand value = it.getValue();
             if(!value.getAnnotation().permission().isEmpty())
                 if(!sender.hasPermission(value.getAnnotation().permission())) return false;
 
@@ -66,10 +66,10 @@ public abstract class STCommand implements CommandExecutor, TabCompleter {
         }).map(Map.Entry::getKey).collect(Collectors.toList()), new ArrayList<>());
         else {
             int index = args.length - 2;
-            STSubCommand target = subCommands.get(args[0]);
+            MSSubCommand target = subCommands.get(args[0]);
             if(target == null) return null;
             else {
-                STArgument<?> tab = target.getArgument(sender, index);
+                MSArgument<?> tab = target.getArgument(sender, index);
                 if(tab == null) return Collections.emptyList();
                 else {
                     List<String> result = tab.getTabCompleter().apply();

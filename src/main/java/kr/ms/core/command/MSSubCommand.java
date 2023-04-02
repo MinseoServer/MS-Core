@@ -12,14 +12,14 @@ import java.lang.reflect.Parameter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class STSubCommand {
+public class MSSubCommand {
 
-    private final ArrayList<Pair<STArgument<?>, Boolean>> arguments = new ArrayList<>();
+    private final ArrayList<Pair<MSArgument<?>, Boolean>> arguments = new ArrayList<>();
     private final Subcommand annotation;
     private final Method function;
-    private final STCommand parent;
+    private final MSCommand parent;
     private final String helpLine;
-    public STSubCommand(Subcommand annotation, Method method, STCommand parent) {
+    public MSSubCommand(Subcommand annotation, Method method, MSCommand parent) {
         this.annotation = annotation;
         this.function = method;
         this.parent = parent;
@@ -30,7 +30,7 @@ public class STSubCommand {
             if(i == 0) continue;
             Parameter param = params[i];
             Class<?> paramClass = param.getType();
-            STArgument<?> argument = Core.getArgumentRepository().getArgument(paramClass);
+            MSArgument<?> argument = Core.getArgumentRepository().getArgument(paramClass);
             if(argument != null) {
                 if (param.isAnnotationPresent(NullableArgument.class)) arguments.add(new Pair<>(argument, false));
                 else arguments.add(new Pair<>(argument, true));
@@ -54,7 +54,7 @@ public class STSubCommand {
             List<Object> argumentList = new ArrayList<>();
             argumentList.add(sender);
             for(int i = 0; i < arguments.size(); i++) {
-                Pair<STArgument<?>, Boolean> it = arguments.get(i);
+                Pair<MSArgument<?>, Boolean> it = arguments.get(i);
                 Object obj;
                 try { obj = it.getFirst().cast(args[i]); } catch (Exception e) { obj = null; }
                 if(it.getSecond() && obj == null) {
@@ -77,7 +77,7 @@ public class STSubCommand {
 
     public void printHelpMessage(CommandSenderWrapper sender) { sender.sendMessage(helpLine); }
 
-    public STArgument<?> getArgument(CommandSenderWrapper sender, int index) {
+    public MSArgument<?> getArgument(CommandSenderWrapper sender, int index) {
         try {
             if(!sender.isOp() && annotation.isOp()) return null;
             else if(!annotation.permission().isEmpty() && sender.hasPermission(annotation.permission())) return arguments.get(index).getFirst();
