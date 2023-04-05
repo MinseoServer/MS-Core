@@ -16,7 +16,7 @@ inline fun <reified E: Event> JavaPlugin.listen(priority: EventPriority = EventP
 
 inline fun <reified E: PlayerEvent> JavaPlugin.listen(priority: EventPriority = EventPriority.NORMAL, target: Player, crossinline event: E.(listener: Listener)->Unit) {
     val listener = object: Listener {}
-    server.pluginManager.registerEvent(E::class.java, object: Listener {}, priority, { _, e ->
+    server.pluginManager.registerEvent(E::class.java, listener, priority, { _, e ->
         e as E
         if(e.player.uniqueId == target.uniqueId) event.invoke(e, listener)
     }, this)
