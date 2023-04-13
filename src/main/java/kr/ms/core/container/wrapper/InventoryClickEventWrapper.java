@@ -11,6 +11,7 @@ import org.bukkit.inventory.ItemStack;
 public class InventoryClickEventWrapper {
     private final InventoryClickEvent event;
     private boolean buttonCancelled = false;
+    private int maxSlot = 54;
     public void setCancelled(boolean cancel) { event.setCancelled(cancel); }
     public ItemStack getCurrentItem() {
         return event.getCurrentItem() == null ? new ItemStack(Material.AIR) : event.getCurrentItem();
@@ -24,4 +25,6 @@ public class InventoryClickEventWrapper {
     public boolean isShift() { return event.isShiftClick(); }
     public boolean isWheel() { return event.getClick().equals(ClickType.MIDDLE); }
     public int getHotbarButton() { return event.getHotbarButton(); }
+    public boolean isClickedPlayerInventory() { return event.getRawSlot() >= maxSlot; }
+    public int getSlot() { return event.getSlot(); }
 }

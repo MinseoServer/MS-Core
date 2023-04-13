@@ -124,7 +124,7 @@ public abstract class MSContainer implements InventoryHolder {
 
     public void $click(InventoryClickEvent event) {
         if(cancel) event.setCancelled(true);
-        InventoryClickEventWrapper wrapper = new InventoryClickEventWrapper(event, false);
+        InventoryClickEventWrapper wrapper = new InventoryClickEventWrapper(event, false, size);
         guiClick(wrapper);
         ItemStack itemChecker = event.getCurrentItem();
         if(itemChecker == null || itemChecker.getType().equals(Material.AIR)) return;
