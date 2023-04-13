@@ -1,6 +1,7 @@
 package kr.ms.core.extension
 
 import kr.ms.core.util.byte.compress
+import kr.ms.core.util.byte.decompress
 import org.bukkit.Material
 import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.ItemStack
@@ -33,7 +34,7 @@ fun Inventory.toByteArray(compress: Boolean = true): ByteArray = (contents as Ar
 fun ItemStack.toByteArray(compress: Boolean = true): ByteArray = Array<ItemStack?>(1) { this }.toByteArray(compress)
 
 fun ByteArray.toItemArray(decompress: Boolean = true): Array<ItemStack> {
-    ByteArrayInputStream(this).use {
+    ByteArrayInputStream(this.run { if(decompress) decompress() else this }).use {
         BukkitObjectInputStream(it).use { bois ->
             val size = bois.readInt()
             val list = mutableListOf<ItemStack>()
