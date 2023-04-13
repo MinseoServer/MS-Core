@@ -18,6 +18,7 @@ public class Core extends JavaPlugin {
     @SuppressWarnings("all")
     public void onEnable() {
         instance = this;
+        getLogger().info("asdasd");
         argumentRepository = new $MSArgumentRepositoryImpl();
         //new Metrics(this, 17172);
 

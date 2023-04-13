@@ -19,15 +19,15 @@ import java.util.stream.Collectors;
 
 public class MSButton {
 
-    @Getter private boolean isGlow;
-    @Getter private boolean isCleanable;
-    @Getter private boolean isCancelled;
-    private BiConsumer<ButtonClickEventWrapper, MSContainer> function;
-    private ItemStack itemStack;
-    private String displayName;
-    private List<String> lore;
+    @Getter protected boolean isGlow;
+    @Getter protected boolean isCleanable;
+    @Getter protected boolean isCancelled;
+    protected BiConsumer<ButtonClickEventWrapper, MSContainer> function;
+    protected ItemStack itemStack;
+    protected String displayName;
+    protected List<String> lore;
 
-    private MSButton() {
+    protected MSButton() {
         isGlow = false;
         isCleanable = true;
         isCancelled = false;
@@ -35,7 +35,7 @@ public class MSButton {
         lore = null;
     }
 
-    private MSButton apply() {
+    protected MSButton apply() {
         ItemMeta meta = itemStack.getItemMeta();
         if(displayName != null) meta.setDisplayName(displayName);
         if(lore != null) meta.setLore(lore);
@@ -60,6 +60,10 @@ public class MSButton {
         function.accept(wrapper, container);
     }
 
+    /**
+     * {@link MSButtonBuilder}
+     */
+    @Deprecated
     public static class STButtonBuilder {
 
         private MSButton button;
