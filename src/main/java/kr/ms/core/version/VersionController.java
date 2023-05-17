@@ -18,6 +18,7 @@ public class VersionController {
         v1_17_R1("1.17", true),
         v1_18_R1("1.18", true),
         v1_19_R1("1.19-R0.1", true),
+        v1_19_R3("1.19-R0.3", true),
         v1_19_R2("1.19", true);
 
         @Getter private final String v;
@@ -57,6 +58,11 @@ public class VersionController {
         try {
             Class.forName("org.bukkit.craftbukkit.v1_19_R1.inventory.CraftItemStack");
             return Version.v1_19_R1;
+        }
+        catch (ClassNotFoundException ignored) {}
+        try {
+            Class.forName("org.bukkit.craftbukkit.v1_19_R3.inventory.CraftItemStack");
+            return Version.v1_19_R3;
         }
         catch (ClassNotFoundException ignored) {}
         Optional<Version> versionFilter = Arrays.stream(Version.values()).filter(it->server.getBukkitVersion().contains(it.v)).findFirst();

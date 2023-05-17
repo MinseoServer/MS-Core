@@ -1,5 +1,6 @@
 package kr.ms.core;
 
+import kr.ms.core.bstats.Metrics;
 import kr.ms.core.repo.impl.$MSArgumentRepositoryImpl;
 import kr.ms.core.container.ContainerListener;
 import kr.ms.core.repo.MSArgumentRepository;
@@ -18,9 +19,8 @@ public class Core extends JavaPlugin {
     @SuppressWarnings("all")
     public void onEnable() {
         instance = this;
-        getLogger().info("asdasd");
         argumentRepository = new $MSArgumentRepositoryImpl();
-        //new Metrics(this, 17172);
+        new Metrics(this, 18227);
 
         VersionController.$initializing(this);
         PlayerSkullManager.$initializing(VersionController.getInstance().getVersion(), getServer());
