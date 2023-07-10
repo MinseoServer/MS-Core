@@ -3,5 +3,5 @@ main: kr.ms.core.Core
 author: GGong
 description: Core Plugin.
 
-version: 1.0.19
+version: 1.0.20
 api-version: 1.13

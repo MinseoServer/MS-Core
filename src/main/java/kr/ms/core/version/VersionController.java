@@ -19,7 +19,10 @@ public class VersionController {
         v1_18_R1("1.18", true),
         v1_19_R1("1.19-R0.1", true),
         v1_19_R3("1.19-R0.3", true),
-        v1_19_R2("1.19", true);
+        v1_19_R2("1.19", true),
+        v1_20_R1("1.20-R0.1", true),
+        v1_20_R3("1.20-R0.3", true),
+        v1_20_R2("1.20", true);
 
         @Getter private final String v;
         @Getter public final String version = name();
